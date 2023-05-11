@@ -71,10 +71,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-dp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/05/10/Test/" class="article-date">
-  <time class="dt-published" datetime="2023-05-10T07:09:39.000Z" itemprop="datePublished">2023-05-10</time>
+    <a href="/2023/05/11/dp/" class="article-date">
+  <time class="dt-published" datetime="2023-05-11T06:33:36.471Z" itemprop="datePublished">2023-05-11</time>
 </a>
     
   </div>
@@ -85,7 +85,59 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/10/Test/">Test</a>
+      <a class="p-name article-title" href="/2023/05/11/dp/">動態規劃 Dynamic Programming</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>簡單來講就是 :<br>“重複的事情只執行一次”<br>“先記錄下來, 下次再次遇到直接使用”</p>
+<p>最經典的例子 - 費氏數列（Fibonacci）:</p>
+<p>先看下面遞迴解法:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">Fib</span><span class="params">(<span class="type">int</span> &amp;n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">2</span>) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Fib</span>(i<span class="number">-1</span>) + <span class="built_in">Fib</span>(i<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由於每一個節點會衍生出兩個節點</p>
+<img src="/2023/05/11/dp/image_2023_04_28T06_58_36_630Z.png" class="">
+<p>時間複雜度為</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(2^n)</span><br></pre></td></tr></table></figure>
+
+<p>若改用dp的方式來實作:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">Fib</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    f[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    f[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">2</span>; i&lt;=n; i++) &#123;</span><br><span class="line">        f[i] = f[i<span class="number">-1</span>] + f[i<span class="number">-2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f[n<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>時間複雜度為</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(n)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/11/dp/" data-id="clhir7igr0002k3fj3a1j4k79" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-20200314-es-monitoring-metric" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/11/20200314-es-monitoring-metric/" class="article-date">
+  <time class="dt-published" datetime="2023-05-11T05:52:06.000Z" itemprop="datePublished">2023-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/11/20200314-es-monitoring-metric/">20200314-es-monitoring-metric</a>
     </h1>
   
 
@@ -97,7 +149,60 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/05/10/Test/" data-id="clhhd5hdg0000u7fjc9pzhc2k" data-title="Test" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/05/11/20200314-es-monitoring-metric/" data-id="clhir7ig30000k3fjdvcm4pi5" data-title="20200314-es-monitoring-metric" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/11/Test/" class="article-date">
+  <time class="dt-published" datetime="2023-05-11T05:41:34.701Z" itemprop="datePublished">2023-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/11/Test/">動態規劃 Dynamic Programming</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>簡單來講就是 :<br>“重複的事情只執行一次”<br>“先記錄下來, 下次再次遇到直接使用”</p>
+<p>最經典的例子 - 費氏數列（Fibonacci）:</p>
+<p>先看下面遞迴解法:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">Fib</span><span class="params">(<span class="type">int</span> &amp;n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">2</span>) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Fib</span>(i<span class="number">-1</span>) + <span class="built_in">Fib</span>(i<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/11/Test/" data-id="clhir7igl0001k3fjbvjt7gte" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
       
       
       
@@ -148,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/05/03/hello-world/" data-id="clhhcvd1r0000q6fj9qh99lju" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/05/03/hello-world/" data-id="clhir7igv0003k3fj31ed39l2" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -191,7 +296,15 @@
       <ul>
         
           <li>
-            <a href="/2023/05/10/Test/">Test</a>
+            <a href="/2023/05/11/dp/">動態規劃 Dynamic Programming</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/11/20200314-es-monitoring-metric/">20200314-es-monitoring-metric</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/11/Test/">動態規劃 Dynamic Programming</a>
           </li>
         
           <li>
