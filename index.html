@@ -97,7 +97,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="題目-27-Remove-Element"><a href="#題目-27-Remove-Element" class="headerlink" title="題目 - 27. Remove Element"></a>題目 - 27. Remove Element</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.</span><br><span class="line"></span><br><span class="line">Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:</span><br><span class="line"></span><br><span class="line">Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.</span><br><span class="line">Return k.</span><br><span class="line">Custom Judge:</span><br><span class="line"></span><br><span class="line">The judge will test your solution with the following code:</span><br><span class="line"></span><br><span class="line">/****</span><br><span class="line">int[] nums = [...]; // Input array</span><br><span class="line">int val = ...; // Value to remove</span><br><span class="line">int[] expectedNums = [...]; // The expected answer with correct length.</span><br><span class="line">                            // It is sorted with no values equaling val.</span><br><span class="line"></span><br><span class="line">int k = removeElement(nums, val); // Calls your implementation</span><br><span class="line"></span><br><span class="line">assert k == expectedNums.length;</span><br><span class="line">sort(nums, 0, k); // Sort the first k elements of nums</span><br><span class="line">for (int i = 0; i &lt; actualLength; i++) &#123;</span><br><span class="line">    assert nums[i] == expectedNums[i];</span><br><span class="line">&#125;</span><br><span class="line">****/</span><br><span class="line"></span><br><span class="line">If all assertions pass, then your solution will be accepted.</span><br></pre></td></tr></table></figure>
+        <h2 id="題目-27-Remove-Element"><a href="#題目-27-Remove-Element" class="headerlink" title="題目 - 27. Remove Element"></a>題目 - 27. Remove Element</h2><p>Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.</p>
+<p>Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:</p>
+<p>Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.<br>Return k.<br>Custom Judge:</p>
+<p>The judge will test your solution with the following code:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int[] nums = [...]; // Input array</span><br><span class="line">int val = ...; // Value to remove</span><br><span class="line">int[] expectedNums = [...]; // The expected answer with correct length.</span><br><span class="line">                            // It is sorted with no values equaling val.</span><br><span class="line"></span><br><span class="line">int k = removeElement(nums, val); // Calls your implementation</span><br><span class="line"></span><br><span class="line">assert k == expectedNums.length;</span><br><span class="line">sort(nums, 0, k); // Sort the first k elements of nums</span><br><span class="line">for (int i = 0; i &lt; actualLength; i++) &#123;</span><br><span class="line">    assert nums[i] == expectedNums[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If all assertions pass, then your solution will be accepted.</p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: nums = [3,2,2,3], val = 3</span><br><span class="line">Output: 2, nums = [2,2,_,_]</span><br><span class="line">Explanation: Your function should return k = 2, with the first two elements of nums being 2.</span><br><span class="line">It does not matter what you leave beyond the returned k (hence they are underscores).</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: nums = [0,1,2,2,3,0,4,2], val = 2</span><br><span class="line">Output: 5, nums = [0,1,4,0,3,_,_,_]</span><br><span class="line">Explanation: Your function should return k = 5, with the first five elements of nums containing 0, 0, 1, 3, and 4.</span><br><span class="line">Note that the five elements can be returned in any order.</span><br><span class="line">It does not matter what you leave beyond the returned k (hence they are underscores).</span><br></pre></td></tr></table></figure>
 <h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0 &lt;= nums.length &lt;= 100</span><br><span class="line">0 &lt;= nums[i] &lt;= 50</span><br><span class="line">0 &lt;= val &lt;= 100</span><br></pre></td></tr></table></figure>
 
@@ -108,7 +114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkv23i790003vxfj7yu2clxi" data-title="27. Remove Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkv2dir90003k4fjfyd51kcj" data-title="27. Remove Element" class="article-share-link">Share</a>
       
       
       
@@ -162,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkv23i740001vxfj68a4eou1" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkv2diqt0000k4fj587gcszk" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
       
       
       
@@ -213,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkv23i770002vxfj05xsgpo5" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkv2dir70002k4fj4ajoe5b8" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -247,7 +253,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="題目-88-Merge-Sorted-Array"><a href="#題目-88-Merge-Sorted-Array" class="headerlink" title="題目 - 88. Merge Sorted Array"></a>題目 - 88. Merge Sorted Array</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.</span><br><span class="line"></span><br><span class="line">Merge nums1 and nums2 into a single array sorted in non-decreasing order.</span><br><span class="line"></span><br><span class="line">The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.</span><br></pre></td></tr></table></figure>
+        <h2 id="題目-88-Merge-Sorted-Array"><a href="#題目-88-Merge-Sorted-Array" class="headerlink" title="題目 - 88. Merge Sorted Array"></a>題目 - 88. Merge Sorted Array</h2><p>You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.</p>
+<p>Merge nums1 and nums2 into a single array sorted in non-decreasing order.</p>
+<p>The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.</p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3</span><br><span class="line">Output: [1,2,2,3,5,6]</span><br><span class="line">Explanation: The arrays we are merging are [1,2,3] and [2,5,6].</span><br><span class="line">The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: nums1 = [1], m = 1, nums2 = [], n = 0</span><br><span class="line">Output: [1]</span><br><span class="line">Explanation: The arrays we are merging are [1] and [].</span><br><span class="line">The result of the merge is [1].</span><br><span class="line">Example 3:</span><br><span class="line"></span><br><span class="line">Input: nums1 = [0], m = 0, nums2 = [1], n = 1</span><br><span class="line">Output: [1]</span><br><span class="line">Explanation: The arrays we are merging are [] and [1].</span><br><span class="line">The result of the merge is [1].</span><br><span class="line">Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.</span><br></pre></td></tr></table></figure>
 <h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nums1.length == m + n</span><br><span class="line">nums2.length == n</span><br><span class="line">0 &lt;= m, n &lt;= 200</span><br><span class="line">1 &lt;= m + n &lt;= 200</span><br><span class="line">-109 &lt;= nums1[i], nums2[j] &lt;= 109</span><br></pre></td></tr></table></figure>
 
@@ -256,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkv23i7b0004vxfj6yjce61a" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkv2dirb0004k4fj9qcub5ut" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -298,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkv23i7g0006vxfj1ipl8uj6" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkv2dirh0006k4fj2x492x4u" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
       
       
       
@@ -337,7 +345,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkv23i6v0000vxfjfir951pq" data-title="c++ 函數彙整" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkv2dir20001k4fj8vlr90o2" data-title="c++ 函數彙整" class="article-share-link">Share</a>
       
       
       
