@@ -75,107 +75,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-lc88" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/08/03/lc88/" class="article-date">
-  <time class="dt-published" datetime="2023-08-03T07:27:53.000Z" itemprop="datePublished">2023-08-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/03/lc88/">88. Merge Sorted Array</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><blockquote>
-<p>You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.</p>
-<p>Merge nums1 and nums2 into a single array sorted in non-decreasing order.</p>
-<p>The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3</span><br><span class="line">Output: [1,2,2,3,5,6]</span><br><span class="line">Explanation: The arrays we are merging are [1,2,3] and [2,5,6].</span><br><span class="line">The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: nums1 = [1], m = 1, nums2 = [], n = 0</span><br><span class="line">Output: [1]</span><br><span class="line">Explanation: The arrays we are merging are [1] and [].</span><br><span class="line">The result of the merge is [1].</span><br><span class="line">Example 3:</span><br><span class="line"></span><br><span class="line">Input: nums1 = [0], m = 0, nums2 = [1], n = 1</span><br><span class="line">Output: [1]</span><br><span class="line">Explanation: The arrays we are merging are [] and [1].</span><br><span class="line">The result of the merge is [1].</span><br><span class="line">Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.</span><br><span class="line"></span><br><span class="line">Constraints:</span><br><span class="line"></span><br><span class="line">nums1.length == m + n</span><br><span class="line">nums2.length == n</span><br><span class="line">0 &lt;= m, n &lt;= 200</span><br><span class="line">1 &lt;= m + n &lt;= 200</span><br><span class="line">-109 &lt;= nums1[i], nums2[j] &lt;= 109</span><br></pre></td></tr></table></figure>
-
-<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>不能用額外的空間的情況下, 如果要直接更新nums1,<br>先把第一個nums1 的 0 找出來, 用nums2 第一個數值替代掉, 以此類推</p>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, <span class="type">int</span> m, vector&lt;<span class="type">int</span>&gt;&amp; nums2, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> size = nums1.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;size; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums1[i] == <span class="number">0</span> &amp;&amp; j &lt; nums2.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            nums1[i] = nums2[j++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(nums1.<span class="built_in">begin</span>(), nums1.<span class="built_in">end</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkuuwekt000330xfe2mz8591" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/08/03/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-08-03T07:24:00.509Z" itemprop="datePublished">2023-08-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/03/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkuuwekq000230xf4mud967x" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-dp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/03/dp/" class="article-date">
-  <time class="dt-published" datetime="2023-08-03T07:24:00.508Z" itemprop="datePublished">2023-08-03</time>
+  <time class="dt-published" datetime="2023-08-03T10:47:49.478Z" itemprop="datePublished">2023-08-03</time>
 </a>
     
   </div>
@@ -212,7 +115,104 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkuuwekm000130xf3ubj6av8" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkv1a2fk000121fj0ndxg351" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/03/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2023-08-03T10:47:49.478Z" itemprop="datePublished">2023-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/03/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkv1a2fo000221fj5wxg9ze1" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-lc88" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/03/lc88/" class="article-date">
+  <time class="dt-published" datetime="2023-08-02T23:27:53.000Z" itemprop="datePublished">2023-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/03/lc88/">88. Merge Sorted Array</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><blockquote>
+<p>You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.</p>
+<p>Merge nums1 and nums2 into a single array sorted in non-decreasing order.</p>
+<p>The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3</span><br><span class="line">Output: [1,2,2,3,5,6]</span><br><span class="line">Explanation: The arrays we are merging are [1,2,3] and [2,5,6].</span><br><span class="line">The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: nums1 = [1], m = 1, nums2 = [], n = 0</span><br><span class="line">Output: [1]</span><br><span class="line">Explanation: The arrays we are merging are [1] and [].</span><br><span class="line">The result of the merge is [1].</span><br><span class="line">Example 3:</span><br><span class="line"></span><br><span class="line">Input: nums1 = [0], m = 0, nums2 = [1], n = 1</span><br><span class="line">Output: [1]</span><br><span class="line">Explanation: The arrays we are merging are [] and [1].</span><br><span class="line">The result of the merge is [1].</span><br><span class="line">Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.</span><br><span class="line"></span><br><span class="line">Constraints:</span><br><span class="line"></span><br><span class="line">nums1.length == m + n</span><br><span class="line">nums2.length == n</span><br><span class="line">0 &lt;= m, n &lt;= 200</span><br><span class="line">1 &lt;= m + n &lt;= 200</span><br><span class="line">-109 &lt;= nums1[i], nums2[j] &lt;= 109</span><br></pre></td></tr></table></figure>
+
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>不能用額外的空間的情況下, 如果要直接更新nums1,<br>先把第一個nums1 的 0 找出來, 用nums2 第一個數值替代掉, 以此類推</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, <span class="type">int</span> m, vector&lt;<span class="type">int</span>&gt;&amp; nums2, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> size = nums1.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;size; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums1[i] == <span class="number">0</span> &amp;&amp; j &lt; nums2.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            nums1[i] = nums2[j++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(nums1.<span class="built_in">begin</span>(), nums1.<span class="built_in">end</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkv1a2fq000321fj5a147mx1" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -227,7 +227,7 @@
     <article id="post-quicksort" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/06/15/quicksort/" class="article-date">
-  <time class="dt-published" datetime="2023-06-15T11:01:56.000Z" itemprop="datePublished">2023-06-15</time>
+  <time class="dt-published" datetime="2023-06-15T03:01:56.000Z" itemprop="datePublished">2023-06-15</time>
 </a>
     
   </div>
@@ -252,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkuuwekv000430xf6xdtgefy" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkv1a2fr000421fj2l3p80h6" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
       
       
       
@@ -267,7 +267,7 @@
     <article id="post-cpp-note" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/06/15/cpp-note/" class="article-date">
-  <time class="dt-published" datetime="2023-06-15T10:03:05.000Z" itemprop="datePublished">2023-06-15</time>
+  <time class="dt-published" datetime="2023-06-15T02:03:05.000Z" itemprop="datePublished">2023-06-15</time>
 </a>
     
   </div>
@@ -291,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkuuwekd000030xfeflab0zp" data-title="c++ 函數彙整" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkv1a2fc000021fj1zwuc2h2" data-title="c++ 函數彙整" class="article-share-link">Share</a>
       
       
       
@@ -334,7 +334,7 @@
       <ul>
         
           <li>
-            <a href="/2023/08/03/lc88/">88. Merge Sorted Array</a>
+            <a href="/2023/08/03/dp/">動態規劃 Dynamic Programming</a>
           </li>
         
           <li>
@@ -342,7 +342,7 @@
           </li>
         
           <li>
-            <a href="/2023/08/03/dp/">動態規劃 Dynamic Programming</a>
+            <a href="/2023/08/03/lc88/">88. Merge Sorted Array</a>
           </li>
         
           <li>
