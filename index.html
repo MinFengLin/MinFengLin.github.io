@@ -75,6 +75,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-lc26" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/03/lc26/" class="article-date">
+  <time class="dt-published" datetime="2023-08-03T11:23:01.000Z" itemprop="datePublished">2023-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/03/lc26/">26. Remove Duplicates from Sorted Array</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="題目-26-Remove-Duplicates-from-Sorted-Array"><a href="#題目-26-Remove-Duplicates-from-Sorted-Array" class="headerlink" title="題目 - 26. Remove Duplicates from Sorted Array"></a>題目 - 26. Remove Duplicates from Sorted Array</h2><p>Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.</p>
+<p>Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:</p>
+<p>Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.<br>Return k.<br>Custom Judge:</p>
+<p>The judge will test your solution with the following code:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int[] nums = [...]; // Input array</span><br><span class="line">int[] expectedNums = [...]; // The expected answer with correct length</span><br><span class="line"></span><br><span class="line">int k = removeDuplicates(nums); // Calls your implementation</span><br><span class="line"></span><br><span class="line">assert k == expectedNums.length;</span><br><span class="line">for (int i = 0; i &lt; k; i++) &#123;</span><br><span class="line">    assert nums[i] == expectedNums[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If all assertions pass, then your solution will be accepted.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: nums = [1,1,2]</span><br><span class="line">Output: 2, nums = [1,2,_]</span><br><span class="line">Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.</span><br><span class="line">It does not matter what you leave beyond the returned k (hence they are underscores).</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: nums = [0,0,1,1,1,2,2,3,3,4]</span><br><span class="line">Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]</span><br><span class="line">Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.</span><br><span class="line">It does not matter what you leave beyond the returned k (hence they are underscores).</span><br></pre></td></tr></table></figure>
+<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;= nums.length &lt;= 3 * 104</span><br><span class="line">-100 &lt;= nums[i] &lt;= 100</span><br><span class="line">nums is sorted in non-decreasing order.</span><br></pre></td></tr></table></figure>
+
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>這題可以直接透過 <strong>set</strong> 的特性來處理, 之後再把set的丟回去, 並resize 為 set.size 即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Code:</span><br><span class="line"></span><br><span class="line">``` c++</span><br><span class="line">int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">    unordered_set&lt;int&gt; list;</span><br><span class="line"></span><br><span class="line">    for (auto n: nums) &#123;</span><br><span class="line">        list.insert(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (auto n: list) &#123;</span><br><span class="line">        nums.insert(nums.begin(), n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    nums.resize(list.size());</span><br><span class="line">    sort(nums.begin(), nums.end());</span><br><span class="line"></span><br><span class="line">    return list.size();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/03/lc26/" data-id="clkv2u7ky0003ivfjeohq1jun" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-lc27" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/03/lc27/" class="article-date">
@@ -114,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkv2dir90003k4fjfyd51kcj" data-title="27. Remove Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkv2u7kz0004ivfjdcuxb6bu" data-title="27. Remove Element" class="article-share-link">Share</a>
       
       
       
@@ -168,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkv2diqt0000k4fj587gcszk" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkv2u7ks0001ivfjhv5t0ui4" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
       
       
       
@@ -219,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkv2dir70002k4fj4ajoe5b8" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkv2u7kw0002ivfjdxxkgzwa" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -264,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkv2dirb0004k4fj9qcub5ut" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkv2u7l40006ivfjbxyrg7un" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -306,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkv2dirh0006k4fj2x492x4u" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkv2u7l60007ivfjcqa9h4zu" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
       
       
       
@@ -345,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkv2dir20001k4fj8vlr90o2" data-title="c++ 函數彙整" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkv2u7kk0000ivfj8tva1hck" data-title="c++ 函數彙整" class="article-share-link">Share</a>
       
       
       
@@ -402,6 +452,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/03/lc26/">26. Remove Duplicates from Sorted Array</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/03/lc27/">27. Remove Element</a>
           </li>
         
@@ -415,10 +469,6 @@
         
           <li>
             <a href="/2023/08/03/lc88/">88. Merge Sorted Array</a>
-          </li>
-        
-          <li>
-            <a href="/2023/06/15/quicksort/">快速排序法 - 練習</a>
           </li>
         
       </ul>
