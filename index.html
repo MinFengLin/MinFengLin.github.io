@@ -107,11 +107,11 @@
 <h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;= nums.length &lt;= 3 * 104</span><br><span class="line">-100 &lt;= nums[i] &lt;= 100</span><br><span class="line">nums is sorted in non-decreasing order.</span><br></pre></td></tr></table></figure>
 
 <h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>這題可以直接透過 <strong>set</strong> 的特性來處理, 之後再把set的丟回去, 並resize 為 set.size 即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Code:</span><br><span class="line"></span><br><span class="line">``` c++</span><br><span class="line">int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">    unordered_set&lt;int&gt; list;</span><br><span class="line"></span><br><span class="line">    for (auto n: nums) &#123;</span><br><span class="line">        list.insert(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (auto n: list) &#123;</span><br><span class="line">        nums.insert(nums.begin(), n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    nums.resize(list.size());</span><br><span class="line">    sort(nums.begin(), nums.end());</span><br><span class="line"></span><br><span class="line">    return list.size();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">removeDuplicates</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    unordered_set&lt;<span class="type">int</span>&gt; list;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> n: nums) &#123;</span><br><span class="line">        list.<span class="built_in">insert</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> n: list) &#123;</span><br><span class="line">        nums.<span class="built_in">insert</span>(nums.<span class="built_in">begin</span>(), n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    nums.<span class="built_in">resize</span>(list.<span class="built_in">size</span>());</span><br><span class="line">    <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> list.<span class="built_in">size</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc26/" data-id="clkv2u7ky0003ivfjeohq1jun" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc26/" data-id="clkv3pfsn0001trfjdd487a6k" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -164,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkv2u7kz0004ivfjdcuxb6bu" data-title="27. Remove Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkv3pfsq0002trfjec9t93g3" data-title="27. Remove Element" class="article-share-link">Share</a>
       
       
       
@@ -218,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkv2u7ks0001ivfjhv5t0ui4" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkv3pfsv0004trfj8tov7c7s" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
       
       
       
@@ -269,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkv2u7kw0002ivfjdxxkgzwa" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkv3pfsx0005trfj82gj6srm" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -314,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkv2u7l40006ivfjbxyrg7un" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkv3pfsz0006trfjen383oko" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -356,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkv2u7l60007ivfjcqa9h4zu" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkv3pft30009trfjhfyif5zw" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
       
       
       
@@ -395,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkv2u7kk0000ivfj8tva1hck" data-title="c++ 函數彙整" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkv3pfse0000trfj118ha7ht" data-title="c++ 函數彙整" class="article-share-link">Share</a>
       
       
       
