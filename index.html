@@ -75,6 +75,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-lc274" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/04/lc274/" class="article-date">
+  <time class="dt-published" datetime="2023-08-04T07:09:17.000Z" itemprop="datePublished">2023-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/04/lc274/">274. H-Index</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="題目-274-H-Index"><a href="#題目-274-H-Index" class="headerlink" title="題目 - 274. H-Index"></a>題目 - 274. H-Index</h2><p>Given an array of integers citations where citations[i] is the number of citations a researcher received for their ith paper, return the researcher’s h-index.</p>
+<p>According to the definition of h-index on Wikipedia: The h-index is defined as the maximum value of h such that the given researcher has published at least h papers that have each been cited at least h times.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: citations = [3,0,6,1,5]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: [3,0,6,1,5] means the researcher has 5 papers in total and each of them had received 3, 0, 6, 1, 5 citations respectively.</span><br><span class="line">Since the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, their h-index is 3.</span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: citations = [1,3,1]</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
+<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n == citations.length</span><br><span class="line">1 &lt;= n &lt;= 5000</span><br><span class="line">0 &lt;= citations[i] &lt;= 1000</span><br></pre></td></tr></table></figure>
+
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>一開始也看不太懂, 去搜尋後得知, H指標可以直接去看<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/H%E6%8C%87%E6%95%B0">wiki</a> 有詳細的解釋:</p>
+<pre><code>可以按照如下方法確定某人的H指數：
+    將其發表的所有SCI論文[來源請求]按被引次數從高到低排序；
+    從前往後查找排序後的列表，只要當前的引用量大於當前的索引值，則H指數加1，最後得到的結果即為最終的H指數。
+</code></pre>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">hIndex</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; citations)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">sort</span>(citations.<span class="built_in">rbegin</span>(), citations.<span class="built_in">rend</span>());</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;citations.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (citations[i] &gt; i)</span><br><span class="line">            ++res;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/04/lc274/" data-id="clkw948iq000d05fjeg2cfgm5" data-title="274. H-Index" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-lc55" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/04/lc55/" class="article-date">
@@ -110,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc55/" data-id="clkw8plw0000dsnfj5amr5373" data-title="55. Jump Game" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc55/" data-id="clkw948iu000g05fj6r6s5t8k" data-title="55. Jump Game" class="article-share-link">Share</a>
       
       
       
@@ -160,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc122/" data-id="clkw8plvl0004snfj9diwgjj5" data-title="122. Best Time to Buy and Sell Stock II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc122/" data-id="clkw948i9000405fjax767ntb" data-title="122. Best Time to Buy and Sell Stock II" class="article-share-link">Share</a>
       
       
       
@@ -207,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc121/" data-id="clkw8plvj0003snfj3y4th3cp" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc121/" data-id="clkw948i7000305fjcc2x2xcj" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
       
       
       
@@ -254,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc189/" data-id="clkw8plvs0007snfj7jbebprc" data-title="189. Rotate Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc189/" data-id="clkw948ii000705fjgi3x09dz" data-title="189. Rotate Array" class="article-share-link">Share</a>
       
       
       
@@ -301,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc169/" data-id="clkw8plvq0006snfjf5yzcdzo" data-title="169. Majority Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc169/" data-id="clkw948ig000605fj57q10mcv" data-title="169. Majority Element" class="article-share-link">Share</a>
       
       
       
@@ -355,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc80/" data-id="clkw8plw3000gsnfjdt5bcr3t" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc80/" data-id="clkw948iw000i05fj1n2n82kj" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
       
       
       
@@ -405,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc26/" data-id="clkw8plvu0008snfja96xht70" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc26/" data-id="clkw948ij000805fj15xf4y8l" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -458,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkw8plvy000bsnfj24phh0wh" data-title="27. Remove Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkw948io000b05fj5tpm8b2p" data-title="27. Remove Element" class="article-share-link">Share</a>
       
       
       
@@ -512,58 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkw8plvd0001snfj2cs5ddgn" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/08/03/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-08-03T10:47:49.478Z" itemprop="datePublished">2023-08-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/03/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkw8plvh0002snfj2ywi4pjj" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkw948i1000105fj1gh7h1e2" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
       
       
       
@@ -625,6 +626,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/04/lc274/">274. H-Index</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/04/lc55/">55. Jump Game</a>
           </li>
         
@@ -638,10 +643,6 @@
         
           <li>
             <a href="/2023/08/04/lc189/">189. Rotate Array</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/03/lc169/">169. Majority Element</a>
           </li>
         
       </ul>
