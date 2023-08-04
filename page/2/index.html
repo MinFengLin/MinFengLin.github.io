@@ -75,6 +75,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-quicksort" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/15/quicksort/" class="article-date">
+  <time class="dt-published" datetime="2023-06-15T03:01:56.000Z" itemprop="datePublished">2023-06-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/15/quicksort/">快速排序法 - 練習</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://www.youtube.com/watch?v=AsQW27DT82I&amp;ab_channel=loyiCodes</span></span><br><span class="line"><span class="comment">// Try quicksort</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span> &amp;v1, <span class="type">int</span> &amp;v2)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> tmp = v1;</span><br><span class="line"></span><br><span class="line">    v1 = v2;</span><br><span class="line">    v2 = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp; nums, <span class="type">int</span> start, <span class="type">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i=start, j=end;</span><br><span class="line">    <span class="type">int</span> p=i;</span><br><span class="line">    <span class="keyword">if</span> (start &lt; end) &#123;</span><br><span class="line">        <span class="keyword">while</span>(i != j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[j] &gt; nums[p]) &#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[p]) &#123;</span><br><span class="line">               i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">swap</span>(nums[j], nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="built_in">swap</span>(nums[p], nums[i]);</span><br><span class="line">    </span><br><span class="line">        <span class="built_in">sort</span>(nums, start, i<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">sort</span>(nums, j+<span class="number">1</span>, end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; nums &#123;<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">99</span>, <span class="number">18</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">sort</span>(nums, <span class="number">0</span>, nums.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> a: nums) &#123;</span><br><span class="line">        cout &lt;&lt; a &lt;&lt; <span class="string">&quot;-&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span>-&gt;<span class="number">10</span>-&gt;<span class="number">15</span>-&gt;<span class="number">18</span>-&gt;<span class="number">99</span>-&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkvzyay4000iiufjeh4gc5uf" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-cpp-note" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/06/15/cpp-note/" class="article-date">
@@ -102,7 +142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkvy137y0000lzfjcps03lqj" data-title="c++ 函數彙整" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkvzyawz0000iufjef8zct5c" data-title="c++ 函數彙整" class="article-share-link">Share</a>
       
       
       
@@ -164,6 +204,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/04/lc122/">122. Best Time to Buy and Sell Stock II</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/04/lc121/">121. Best Time to Buy and Sell Stock</a>
           </li>
         
@@ -177,10 +221,6 @@
         
           <li>
             <a href="/2023/08/03/lc80/">80. Remove Duplicates from Sorted Array II</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/03/lc26/">26. Remove Duplicates from Sorted Array</a>
           </li>
         
       </ul>

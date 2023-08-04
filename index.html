@@ -75,6 +75,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-lc122" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/04/lc122/" class="article-date">
+  <time class="dt-published" datetime="2023-08-04T02:52:56.000Z" itemprop="datePublished">2023-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/04/lc122/">122. Best Time to Buy and Sell Stock II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="題目-122-Best-Time-to-Buy-and-Sell-Stock-II"><a href="#題目-122-Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="題目 - 122. Best Time to Buy and Sell Stock II"></a>題目 - 122. Best Time to Buy and Sell Stock II</h2><p>You are given an integer array prices where prices[i] is the price of a given stock on the ith day.</p>
+<p>On each day, you may decide to buy and&#x2F;or sell the stock. You can only hold at most one share of the stock at any time. However, you can buy it then immediately sell it on the same day.</p>
+<p>Find and return the maximum profit you can achieve.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: prices = [7,1,5,3,6,4]</span><br><span class="line">Output: 7</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.</span><br><span class="line">Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.</span><br><span class="line">Total profit is 4 + 3 = 7.</span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: prices = [1,2,3,4,5]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.</span><br><span class="line">Total profit is 4.</span><br><span class="line"></span><br><span class="line">Example 3:</span><br><span class="line"></span><br><span class="line">Input: prices = [7,6,4,3,1]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.</span><br></pre></td></tr></table></figure>
+<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;= prices.length &lt;= 3 * 104</span><br><span class="line">0 &lt;= prices[i] &lt;= 104</span><br></pre></td></tr></table></figure>
+
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>如果不用暴力解, 可以用以下方式<br>我們只需要確定隔一天有沒有比其一天還要大, 有的話就賣掉, 把價位差做累加，最終的累加值即為答案。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,4,5]</span><br><span class="line">1-&gt;             2-1</span><br><span class="line">2-&gt;         3-2+2-1</span><br><span class="line">3-&gt;     4-3+3-2+2-1</span><br><span class="line">4-&gt; 5-4+4-3+3-2+2-1</span><br><span class="line">-------------------</span><br><span class="line">5-4+4-3+3-2+2-1 = 5-1 = 4</span><br></pre></td></tr></table></figure>
+
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;prices.<span class="built_in">size</span>()<span class="number">-1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (prices[i+<span class="number">1</span>] &gt; prices[i])</span><br><span class="line">            res += prices[i+<span class="number">1</span>] - prices[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/04/lc122/" data-id="clkvzyaxg0004iufj8n58b6gv" data-title="122. Best Time to Buy and Sell Stock II" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-lc121" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/04/lc121/" class="article-date">
@@ -108,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc121/" data-id="clkvy138c0003lzfj5p2d7obp" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc121/" data-id="clkvzyaxf0003iufj4lfc82cs" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
       
       
       
@@ -155,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc189/" data-id="clkvy138i0006lzfj7vuedvk9" data-title="189. Rotate Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc189/" data-id="clkvzyaxq0007iufjga4q6lji" data-title="189. Rotate Array" class="article-share-link">Share</a>
       
       
       
@@ -202,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc169/" data-id="clkvy138d0004lzfj6dwpbbk7" data-title="169. Majority Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc169/" data-id="clkvzyaxo0006iufj0utb04s7" data-title="169. Majority Element" class="article-share-link">Share</a>
       
       
       
@@ -256,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc80/" data-id="clkvy138o000blzfjccw141wm" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc80/" data-id="clkvzyaxz000diufjfmx11yv5" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
       
       
       
@@ -306,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc26/" data-id="clkvy138j0007lzfjewlf3l7v" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc26/" data-id="clkvzyaxt0008iufjap8td176" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -359,7 +409,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkvy138l0008lzfjb0wq5kif" data-title="27. Remove Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkvzyaxx000biufje935gve1" data-title="27. Remove Element" class="article-share-link">Share</a>
       
       
       
@@ -413,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkvy13860001lzfj1gfp2nmm" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkvzyax80001iufj01c2284r" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
       
       
       
@@ -464,7 +514,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkvy138a0002lzfjgvnoh4z1" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkvzyaxc0002iufj5lhhei52" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -509,52 +559,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkvy138t000glzfj4dlleip3" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc88/" data-id="clkvzyay2000giufj6gvxcygl" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-quicksort" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/06/15/quicksort/" class="article-date">
-  <time class="dt-published" datetime="2023-06-15T03:01:56.000Z" itemprop="datePublished">2023-06-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/06/15/quicksort/">快速排序法 - 練習</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://www.youtube.com/watch?v=AsQW27DT82I&amp;ab_channel=loyiCodes</span></span><br><span class="line"><span class="comment">// Try quicksort</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span> &amp;v1, <span class="type">int</span> &amp;v2)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> tmp = v1;</span><br><span class="line"></span><br><span class="line">    v1 = v2;</span><br><span class="line">    v2 = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp; nums, <span class="type">int</span> start, <span class="type">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i=start, j=end;</span><br><span class="line">    <span class="type">int</span> p=i;</span><br><span class="line">    <span class="keyword">if</span> (start &lt; end) &#123;</span><br><span class="line">        <span class="keyword">while</span>(i != j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[j] &gt; nums[p]) &#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[p]) &#123;</span><br><span class="line">               i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">swap</span>(nums[j], nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="built_in">swap</span>(nums[p], nums[i]);</span><br><span class="line">    </span><br><span class="line">        <span class="built_in">sort</span>(nums, start, i<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">sort</span>(nums, j+<span class="number">1</span>, end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; nums &#123;<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">99</span>, <span class="number">18</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">sort</span>(nums, <span class="number">0</span>, nums.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> a: nums) &#123;</span><br><span class="line">        cout &lt;&lt; a &lt;&lt; <span class="string">&quot;-&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span>-&gt;<span class="number">10</span>-&gt;<span class="number">15</span>-&gt;<span class="number">18</span>-&gt;<span class="number">99</span>-&gt;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkvy138q000dlzfj0go83r7e" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
-      
-      
-      
     </footer>
   </div>
   
@@ -613,6 +623,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/04/lc122/">122. Best Time to Buy and Sell Stock II</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/04/lc121/">121. Best Time to Buy and Sell Stock</a>
           </li>
         
@@ -626,10 +640,6 @@
         
           <li>
             <a href="/2023/08/03/lc80/">80. Remove Duplicates from Sorted Array II</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/03/lc26/">26. Remove Duplicates from Sorted Array</a>
           </li>
         
       </ul>
