@@ -102,7 +102,7 @@
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: nums = [2,3,1,1,4]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.</span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: nums = [3,2,1,0,4]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.</span><br></pre></td></tr></table></figure>
 <h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;= nums.length &lt;= 104</span><br><span class="line">0 &lt;= nums[i] &lt;= 105</span><br></pre></td></tr></table></figure>
 
-<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=i5L_onhWULc&t=233s&ab_channel=MaxMing">https://www.youtube.com/watch?v=i5L_onhWULc&amp;t=233s&amp;ab_channel=MaxMing</a><br>第一時間會想到遞迴, 但這樣速度一定慢, 根據此影片的講解, 可以用雙指針, 若最大步數 &lt; 目前步數, 意思就是到不了最後<br>所以return flase 即可</p>
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=i5L_onhWULc&t=233s&ab_channel=MaxMing">https://www.youtube.com/watch?v=i5L_onhWULc&amp;t=233s&amp;ab_channel=MaxMing</a><br>第一時間會想到遞迴, 但這樣速度一定慢, 根據此影片的講解, 可以用再多一個參數紀錄當前的最大步數, 若最大步數 &lt; 目前步數, 意思就是到不了最後<br>所以return flase 即可</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> i</span><br><span class="line">[2,1,0,4]</span><br><span class="line"> j</span><br><span class="line"> j = max(j, nums[i] + i) = 2</span><br><span class="line">             2 + 0</span><br><span class="line">-----</span><br><span class="line">   i</span><br><span class="line">[2,1,0,4]</span><br><span class="line">     j = 2</span><br><span class="line"> j = max(j, nums[i] + i) = 2</span><br><span class="line">              1 + 1</span><br><span class="line">-----</span><br><span class="line">     i</span><br><span class="line">[2,1,0,4]</span><br><span class="line">     j = 2</span><br><span class="line"> j = max(j, nums[i] + i) = 2</span><br><span class="line">              1 + 1       </span><br><span class="line">-----</span><br><span class="line">       i</span><br><span class="line">[2,1,0,4]</span><br><span class="line">     j = 2</span><br><span class="line">j&lt;i return false;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">canJump</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> size = nums.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;size; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (j &lt; i)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        j = <span class="built_in">max</span>(j, nums[i] + i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -110,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc55/" data-id="clkw7sgfr000daifj2ju66sk6" data-title="55. Jump Game" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc55/" data-id="clkw8plw0000dsnfj5amr5373" data-title="55. Jump Game" class="article-share-link">Share</a>
       
       
       
@@ -160,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc122/" data-id="clkw7sgfd0004aifja9jt0b7m" data-title="122. Best Time to Buy and Sell Stock II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc122/" data-id="clkw8plvl0004snfj9diwgjj5" data-title="122. Best Time to Buy and Sell Stock II" class="article-share-link">Share</a>
       
       
       
@@ -207,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc121/" data-id="clkw7sgfb0003aifjaxgyedy0" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc121/" data-id="clkw8plvj0003snfj3y4th3cp" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
       
       
       
@@ -254,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc189/" data-id="clkw7sgfk0007aifjcgy0a2xn" data-title="189. Rotate Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc189/" data-id="clkw8plvs0007snfj7jbebprc" data-title="189. Rotate Array" class="article-share-link">Share</a>
       
       
       
@@ -301,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc169/" data-id="clkw7sgfi0006aifja70cdutr" data-title="169. Majority Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc169/" data-id="clkw8plvq0006snfjf5yzcdzo" data-title="169. Majority Element" class="article-share-link">Share</a>
       
       
       
@@ -355,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc80/" data-id="clkw7sgfu000gaifja6pw5103" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc80/" data-id="clkw8plw3000gsnfjdt5bcr3t" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
       
       
       
@@ -405,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc26/" data-id="clkw7sgfl0008aifjfmsue6fj" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc26/" data-id="clkw8plvu0008snfja96xht70" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -458,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkw7sgfq000baifjd2qf0zcl" data-title="27. Remove Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc27/" data-id="clkw8plvy000bsnfj24phh0wh" data-title="27. Remove Element" class="article-share-link">Share</a>
       
       
       
@@ -512,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkw7sgf50001aifj5k5th6mx" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/dp/" data-id="clkw8plvd0001snfj2cs5ddgn" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
       
       
       
@@ -563,7 +563,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkw7sgf90002aifjh4e56inv" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/hello-world/" data-id="clkw8plvh0002snfj2ywi4pjj" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
