@@ -75,6 +75,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcode/lc189" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/04/leetcode/lc189/" class="article-date">
+  <time class="dt-published" datetime="2023-08-04T01:39:49.000Z" itemprop="datePublished">2023-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/04/leetcode/lc189/">189. Rotate Array</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="題目-189-Rotate-Array"><a href="#題目-189-Rotate-Array" class="headerlink" title="題目 - 189. Rotate Array"></a>題目 - 189. Rotate Array</h2><p>Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: nums = [1,2,3,4,5,6,7], k = 3</span><br><span class="line">Output: [5,6,7,1,2,3,4]</span><br><span class="line">Explanation:</span><br><span class="line">rotate 1 steps to the right: [7,1,2,3,4,5,6]</span><br><span class="line">rotate 2 steps to the right: [6,7,1,2,3,4,5]</span><br><span class="line">rotate 3 steps to the right: [5,6,7,1,2,3,4]</span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: nums = [-1,-100,3,99], k = 2</span><br><span class="line">Output: [3,99,-1,-100]</span><br><span class="line">Explanation: </span><br><span class="line">rotate 1 steps to the right: [99,-1,-100,3]</span><br><span class="line">rotate 2 steps to the right: [3,99,-1,-100]</span><br></pre></td></tr></table></figure>
+<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;= nums.length &lt;= 105</span><br><span class="line">-231 &lt;= nums[i] &lt;= 231 - 1</span><br><span class="line">0 &lt;= k &lt;= 105</span><br></pre></td></tr></table></figure>
+
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>這題我也是看了別人解答才知道還有驚覺, 還可以這樣寫<br>看以下步驟:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">n = nums.size()</span><br><span class="line">1 2 3 4 5 6 7</span><br><span class="line"></span><br><span class="line">4 3 2 1 5 6 7</span><br><span class="line">------- reverse(nums.begin(), nums.begin()+n-k)</span><br><span class="line">4 3 2 1 7 6 5</span><br><span class="line">        ----- reverse(nums.begin()+n-k, nums.end())</span><br><span class="line">5 6 7 1 2 3 4</span><br><span class="line">------------- reverse(nums.begin(), nums.end())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">rotate</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.<span class="built_in">empty</span>() || (k %= nums.<span class="built_in">size</span>()) == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">reverse</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">begin</span>()+n-k);</span><br><span class="line">    <span class="built_in">reverse</span>(nums.<span class="built_in">begin</span>()+n-k, nums.<span class="built_in">end</span>());</span><br><span class="line">    <span class="built_in">reverse</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/04/leetcode/lc189/" data-id="clky23ip8000eyrfjfbpgcc78" data-title="189. Rotate Array" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-leetcode/lc169" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/03/leetcode/lc169/" class="article-date">
@@ -108,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc169/" data-id="clkxnket60009a4fj9vjj1xhz" data-title="169. Majority Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc169/" data-id="clky23ip5000cyrfj517s4yag" data-title="169. Majority Element" class="article-share-link">Share</a>
       
       
       
@@ -162,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc80/" data-id="clkxnketk000pa4fj44u1dfyq" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc80/" data-id="clky23ipi000ryrfj9u20ceh7" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
       
       
       
@@ -212,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc26/" data-id="clkxnketd000ea4fj0i977v8v" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc26/" data-id="clky23ipa000hyrfja0y30cus" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -265,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc27/" data-id="clkxnketf000ha4fj76nlgv3o" data-title="27. Remove Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc27/" data-id="clky23ipc000jyrfj0lnr2a69" data-title="27. Remove Element" class="article-share-link">Share</a>
       
       
       
@@ -312,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc88/" data-id="clkxnketl000ra4fj9lt4h78n" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc88/" data-id="clky23ipk000tyrfjfzqe42l9" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -354,7 +401,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clkxnkesw0003a4fj052ae3k3" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clky23ioq0003yrfjedryfjq1" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
       
       
       
@@ -393,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clkxnkesj0000a4fj2ifd8qeo" data-title="c++ 函數彙整" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clky23iod0000yrfjbus695yb" data-title="c++ 函數彙整" class="article-share-link">Share</a>
       
       
       
@@ -455,6 +502,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/05/leetcode/lc13/">13. Roman to Integer</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/05/leetcode/lc380/">380. Insert Delete GetRandom O(1)</a>
           </li>
         
@@ -468,10 +519,6 @@
         
           <li>
             <a href="/2023/08/05/dp/">動態規劃 Dynamic Programming</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/05/hello-world/">Hello World</a>
           </li>
         
       </ul>
