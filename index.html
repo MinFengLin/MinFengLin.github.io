@@ -105,13 +105,13 @@
 <h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><ol>
 <li>先排序過後, 去相同的數字都在隔壁</li>
 <li>另外設定兩個指針, j, k</li>
-<li>如果 &gt;0 k–; 如果 &lt; 0 j++;<br>  3-1 i &lt; j &lt; k;<br>  3-2 nums[i] + nums[j] + num[k] &#x3D;&#x3D; 0</li>
+<li>如果 總和 &gt; 0 k– 如果總和 &lt; 0 j++;<br>  3-1 i &lt; j &lt; k;<br>  3-2 nums[i] + nums[j] + num[k] &#x3D;&#x3D; 0</li>
 </ol>
 <h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">threeSum</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">    <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt; nums.<span class="built_in">size</span>()<span class="number">-2</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i<span class="number">-1</span>])</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="type">int</span> j=i+<span class="number">1</span>, k = nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span> (j &lt; k) &#123;</span><br><span class="line">            <span class="type">int</span> sum = nums[i] + nums[j] + nums[k];</span><br><span class="line">            <span class="keyword">if</span> (sum &gt; <span class="number">0</span>)</span><br><span class="line">                --k;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; <span class="number">0</span>)</span><br><span class="line">                ++j;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                res.<span class="built_in">push_back</span>(&#123;nums[i], nums[j++], nums[k++]&#125;);</span><br><span class="line">                <span class="keyword">while</span> (j &lt; k &amp;&amp; nums[j] == nums[j<span class="number">-1</span>]) j++;</span><br><span class="line">                <span class="keyword">while</span> (j &lt; k &amp;&amp; nums[k] == nums[k+<span class="number">1</span>]) k--; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/05/lc15/" data-id="clkxkh7em0006o7fjgkquglhj" data-title="15. 3Sum" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/05/lc15/" data-id="clkxkj6t80006uzfj1pym534h" data-title="15. 3Sum" class="article-share-link">Share</a>
       
       
       
@@ -165,7 +165,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/05/dp/" data-id="clkxkh7ea0001o7fj85m4hwh8" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/05/dp/" data-id="clkxkj6sw0001uzfj2ck3arot" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
       
       
       
@@ -216,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/05/hello-world/" data-id="clkxkh7ed0002o7fj2hjwakpw" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/05/hello-world/" data-id="clkxkj6t00002uzfje0wo5bpy" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -266,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc274/" data-id="clkxkh7ex000go7fj5qo06pnz" data-title="274. H-Index" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc274/" data-id="clkxkj6tj000guzfj9u2w4zu7" data-title="274. H-Index" class="article-share-link">Share</a>
       
       
       
@@ -315,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc55/" data-id="clkxkh7ez000io7fjeqrmegxi" data-title="55. Jump Game" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc55/" data-id="clkxkj6tl000iuzfj8mkm8tcu" data-title="55. Jump Game" class="article-share-link">Share</a>
       
       
       
@@ -365,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc122/" data-id="clkxkh7eh0004o7fj2cdvhwtk" data-title="122. Best Time to Buy and Sell Stock II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc122/" data-id="clkxkj6t30004uzfj05fg5snl" data-title="122. Best Time to Buy and Sell Stock II" class="article-share-link">Share</a>
       
       
       
@@ -412,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc121/" data-id="clkxkh7ef0003o7fjgaqda6gy" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc121/" data-id="clkxkj6t20003uzfjbjvyf18n" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
       
       
       
@@ -459,7 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/lc189/" data-id="clkxkh7ep0008o7fjg6770ry8" data-title="189. Rotate Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/lc189/" data-id="clkxkj6ta0008uzfj4tz69k46" data-title="189. Rotate Array" class="article-share-link">Share</a>
       
       
       
@@ -506,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc169/" data-id="clkxkh7en0007o7fj5ks7d2zh" data-title="169. Majority Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc169/" data-id="clkxkj6t90007uzfj54txd3t1" data-title="169. Majority Element" class="article-share-link">Share</a>
       
       
       
@@ -560,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/lc80/" data-id="clkxkh7f1000ko7fjcl1a5mp5" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/lc80/" data-id="clkxkj6tn000kuzfj3kkib5mv" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
       
       
       
