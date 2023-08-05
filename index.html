@@ -75,6 +75,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcode/lc380" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/05/leetcode/lc380/" class="article-date">
+  <time class="dt-published" datetime="2023-08-05T06:33:22.000Z" itemprop="datePublished">2023-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/05/leetcode/lc380/">380. Insert Delete GetRandom O(1)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="題目-380-Insert-Delete-GetRandom-O-1"><a href="#題目-380-Insert-Delete-GetRandom-O-1" class="headerlink" title="題目 - 380. Insert Delete GetRandom O(1)"></a>題目 - 380. Insert Delete GetRandom O(1)</h2><p>Implement the RandomizedSet class:</p>
+<p>RandomizedSet() Initializes the RandomizedSet object.<br>bool insert(int val) Inserts an item val into the set if not present. Returns true if the item was not present, false otherwise.<br>bool remove(int val) Removes an item val from the set if present. Returns true if the item was present, false otherwise.<br>int getRandom() Returns a random element from the current set of elements (it’s guaranteed that at least one element exists when this method is called). Each element must have the same probability of being returned.<br>You must implement the functions of the class such that each function works in average O(1) time complexity.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">EExample 1:</span><br><span class="line"></span><br><span class="line">Input</span><br><span class="line">[&quot;RandomizedSet&quot;, &quot;insert&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;]</span><br><span class="line">[[], [1], [2], [2], [], [1], [2], []]</span><br><span class="line">Output</span><br><span class="line">[null, true, false, true, 2, true, false, 2]</span><br><span class="line"></span><br><span class="line">Explanation</span><br><span class="line">RandomizedSet randomizedSet = new RandomizedSet();</span><br><span class="line">randomizedSet.insert(1); // Inserts 1 to the set. Returns true as 1 was inserted successfully.</span><br><span class="line">randomizedSet.remove(2); // Returns false as 2 does not exist in the set.</span><br><span class="line">randomizedSet.insert(2); // Inserts 2 to the set, returns true. Set now contains [1,2].</span><br><span class="line">randomizedSet.getRandom(); // getRandom() should return either 1 or 2 randomly.</span><br><span class="line">randomizedSet.remove(1); // Removes 1 from the set, returns true. Set now contains [2].</span><br><span class="line">randomizedSet.insert(2); // 2 was already in the set, so return false.</span><br><span class="line">randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2.</span><br></pre></td></tr></table></figure>
+<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-231 &lt;= val &lt;= 231 - 1</span><br><span class="line">At most 2 * 105 calls will be made to insert, remove, and getRandom.</span><br><span class="line">There will be at least one element in the data structure when getRandom is called.</span><br></pre></td></tr></table></figure>
+
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>用vector的特性來處理就可以了, 會用到以下：<br>vector<int> list</p>
+<ol>
+<li>find()</li>
+<li>list.erase()</li>
+</ol>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">    <span class="built_in">RandomizedSet</span>() &#123;</span><br><span class="line">        _list.<span class="built_in">clear</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">find</span>(_list.<span class="built_in">begin</span>(), _list.<span class="built_in">end</span>(), val) != _list.<span class="built_in">end</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            _list.<span class="built_in">push_back</span>(val);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">find</span>(_list.<span class="built_in">begin</span>(), _list.<span class="built_in">end</span>(), val) != _list.<span class="built_in">end</span>()) &#123;</span><br><span class="line">            _list.<span class="built_in">erase</span>(<span class="built_in">find</span>(_list.<span class="built_in">begin</span>(), _list.<span class="built_in">end</span>(), val));</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getRandom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> _list[<span class="built_in">rand</span>() % _list.<span class="built_in">size</span>()];</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; _list;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/05/leetcode/lc380/" data-id="clkxnj0kv000l4ufj0vnch34u" data-title="380. Insert Delete GetRandom O(1)" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-leetcode/lc134" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/05/leetcode/lc134/" class="article-date">
@@ -112,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/05/leetcode/lc134/" data-id="clkxm9wwo0007vefj0jt871l3" data-title="134. Gas Station" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/05/leetcode/lc134/" data-id="clkxnj0kg00074ufj0rtyf68q" data-title="134. Gas Station" class="article-share-link">Share</a>
       
       
       
@@ -162,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/05/leetcode/lc15/" data-id="clkxm9wwp0008vefjhb331jwk" data-title="15. 3Sum" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/05/leetcode/lc15/" data-id="clkxnj0ki00084ufj8iwddupf" data-title="15. 3Sum" class="article-share-link">Share</a>
       
       
       
@@ -216,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/05/dp/" data-id="clkxm9wwb0001vefj297ta9au" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/05/dp/" data-id="clkxnj0k400014ufj36w9dil7" data-title="動態規劃 Dynamic Programming" class="article-share-link">Share</a>
       
       
       
@@ -267,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/05/hello-world/" data-id="clkxm9wwf0002vefjatvv6y4o" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/05/hello-world/" data-id="clkxnj0k700024ufj4sk75h2m" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -317,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/leetcode/lc274/" data-id="clkxm9wx1000jvefj1uue3jhy" data-title="274. H-Index" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/leetcode/lc274/" data-id="clkxnj0ku000j4ufj9fsi7vng" data-title="274. H-Index" class="article-share-link">Share</a>
       
       
       
@@ -366,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/leetcode/lc55/" data-id="clkxm9wx2000lvefjhxohhpub" data-title="55. Jump Game" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/leetcode/lc55/" data-id="clkxnj0kw000n4ufjb0wpc4h4" data-title="55. Jump Game" class="article-share-link">Share</a>
       
       
       
@@ -416,7 +467,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/leetcode/lc122/" data-id="clkxm9wwj0005vefj0idfgoew" data-title="122. Best Time to Buy and Sell Stock II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/leetcode/lc122/" data-id="clkxnj0kc00054ufj2ec4crg5" data-title="122. Best Time to Buy and Sell Stock II" class="article-share-link">Share</a>
       
       
       
@@ -463,7 +514,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/leetcode/lc121/" data-id="clkxm9wwi0004vefj57umgf4d" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/leetcode/lc121/" data-id="clkxnj0ka00044ufjh4iscb3e" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
       
       
       
@@ -510,54 +561,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/leetcode/lc189/" data-id="clkxm9wwv000cvefjcbyzbozp" data-title="189. Rotate Array" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-leetcode/lc169" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/08/03/leetcode/lc169/" class="article-date">
-  <time class="dt-published" datetime="2023-08-03T12:16:59.000Z" itemprop="datePublished">2023-08-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/03/leetcode/lc169/">169. Majority Element</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="題目-169-Majority-Element"><a href="#題目-169-Majority-Element" class="headerlink" title="題目 - 169. Majority Element"></a>題目 - 169. Majority Element</h2><p>Given an array nums of size n, return the majority element.</p>
-<p>The majority element is the element that appears more than ⌊n &#x2F; 2⌋ times. You may assume that the majority element always exists in the array.</p>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: nums = [3,2,3]</span><br><span class="line">Output: 3</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: nums = [2,2,1,1,1,2,2]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
-<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n == nums.length</span><br><span class="line">1 &lt;= n &lt;= 5 * 104</span><br><span class="line">-109 &lt;= nums[i] &lt;= 109</span><br></pre></td></tr></table></figure>
-
-<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>這題只是在講, 找出在整個vector出現次數超過一半以上的數字.</p>
-<p>我用map的來處理, 每迭代一次就先確認該數字是否出過一半, 若無就繼續處理<br>有的話就提早退出, 這樣可以省時間也可以避免後面發生奇怪的問題.</p>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">majorityElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; nlist;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> i: nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (++nlist[i] &gt; n/<span class="number">2</span>) <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc169/" data-id="clkxm9wwr0009vefj05nihyii" data-title="169. Majority Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/leetcode/lc189/" data-id="clkxnj0ko000c4ufj91n45te3" data-title="189. Rotate Array" class="article-share-link">Share</a>
       
       
       
@@ -589,7 +593,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
     </div>
   </div>
 
@@ -599,7 +603,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a>
+      <a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a>
     </div>
   </div>
 
@@ -621,6 +625,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/05/leetcode/lc380/">380. Insert Delete GetRandom O(1)</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/05/leetcode/lc134/">134. Gas Station</a>
           </li>
         
@@ -634,10 +642,6 @@
         
           <li>
             <a href="/2023/08/05/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/04/leetcode/lc274/">274. H-Index</a>
           </li>
         
       </ul>
