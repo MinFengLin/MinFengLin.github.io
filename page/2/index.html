@@ -75,6 +75,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcode/lc121" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/04/leetcode/lc121/" class="article-date">
+  <time class="dt-published" datetime="2023-08-04T01:57:39.000Z" itemprop="datePublished">2023-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/04/leetcode/lc121/">121. Best Time to Buy and Sell Stock</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="題目-121-Best-Time-to-Buy-and-Sell-Stock"><a href="#題目-121-Best-Time-to-Buy-and-Sell-Stock" class="headerlink" title="題目 - 121. Best Time to Buy and Sell Stock"></a>題目 - 121. Best Time to Buy and Sell Stock</h2><p>You are given an array prices where prices[i] is the price of a given stock on the ith day.</p>
+<p>You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.</p>
+<p>Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: prices = [7,1,5,3,6,4]</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.</span><br><span class="line">Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.</span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: prices = [7,6,4,3,1]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: In this case, no transactions are done and the max profit = 0.</span><br></pre></td></tr></table></figure>
+<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints:"></a>Constraints:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;= prices.length &lt;= 105</span><br><span class="line">0 &lt;= prices[i] &lt;= 104</span><br></pre></td></tr></table></figure>
+
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h2><p>這題有限制如果在一天中只能做一次交易, 那這樣就相對簡單了<br>我們只要把目前最大獲利 &#x3D; 目前價錢 - 前面出現的最低價格 即可<br>若最低價有更動, 更新最低價格.</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> maxp = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> minp = INT_MAX;</span><br><span class="line">    <span class="keyword">if</span> (prices.<span class="built_in">size</span>() == <span class="number">2</span>) <span class="keyword">return</span> prices[<span class="number">1</span>] - prices[<span class="number">0</span>] &gt; <span class="number">0</span> ? prices[<span class="number">1</span>] - prices[<span class="number">0</span>] : <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (prices.<span class="built_in">size</span>() &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> price: prices) &#123;</span><br><span class="line">        <span class="keyword">if</span> (price &lt; minp)</span><br><span class="line">            minp = price;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            maxp = <span class="built_in">max</span>(maxp, price - minp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/04/leetcode/lc121/" data-id="clky2o0tf0005f7fjc8ho3g7r" data-title="121. Best Time to Buy and Sell Stock" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-leetcode/lc189" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/04/leetcode/lc189/" class="article-date">
@@ -108,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/04/leetcode/lc189/" data-id="clky23ip8000eyrfjfbpgcc78" data-title="189. Rotate Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/04/leetcode/lc189/" data-id="clky2o0tw000hf7fjdr9t4aog" data-title="189. Rotate Array" class="article-share-link">Share</a>
       
       
       
@@ -155,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc169/" data-id="clky23ip5000cyrfj517s4yag" data-title="169. Majority Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc169/" data-id="clky2o0tu000ef7fjhs9ret3s" data-title="169. Majority Element" class="article-share-link">Share</a>
       
       
       
@@ -209,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc80/" data-id="clky23ipi000ryrfj9u20ceh7" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc80/" data-id="clky2o0u4000tf7fj6t8c1d27" data-title="80. Remove Duplicates from Sorted Array II" class="article-share-link">Share</a>
       
       
       
@@ -259,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc26/" data-id="clky23ipa000hyrfja0y30cus" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc26/" data-id="clky2o0ty000jf7fj8z3q4xrq" data-title="26. Remove Duplicates from Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -312,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc27/" data-id="clky23ipc000jyrfj0lnr2a69" data-title="27. Remove Element" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc27/" data-id="clky2o0tz000lf7fj8csa2xzz" data-title="27. Remove Element" class="article-share-link">Share</a>
       
       
       
@@ -359,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/03/leetcode/lc88/" data-id="clky23ipk000tyrfjfzqe42l9" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/08/03/leetcode/lc88/" data-id="clky2o0u5000vf7fjd3kk0r4w" data-title="88. Merge Sorted Array" class="article-share-link">Share</a>
       
       
       
@@ -401,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clky23ioq0003yrfjedryfjq1" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/quicksort/" data-id="clky2o0td0003f7fj7nmphg7x" data-title="快速排序法 - 練習" class="article-share-link">Share</a>
       
       
       
@@ -440,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clky23iod0000yrfjbus695yb" data-title="c++ 函數彙整" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/06/15/cpp-note/" data-id="clky2o0sz0000f7fjcyby6b0g" data-title="c++ 函數彙整" class="article-share-link">Share</a>
       
       
       
@@ -502,6 +549,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/05/leetcode/lc12/">12. Integer to Roman</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/05/leetcode/lc13/">13. Roman to Integer</a>
           </li>
         
@@ -515,10 +566,6 @@
         
           <li>
             <a href="/2023/08/05/leetcode/lc15/">15. 3Sum</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/05/dp/">動態規劃 Dynamic Programming</a>
           </li>
         
       </ul>
